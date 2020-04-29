@@ -63,7 +63,7 @@ def main():
     parser.add_argument('--num_frames', '-n', type=int, dest='num_frames', default=None,
         help='Sets the number of frames to run for, otherwise runs forever.')
     args = parser.parse_args()
-
+    
     # Forced sensor mode, 1640x1232, full FoV. See:
     # https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-modes
     # This is the resolution inference run on.
@@ -85,7 +85,7 @@ def main():
 
         with CameraInference(face_detection.model()) as inference:
             for result in inference.run(args.num_frames):
-                faces = face_detection.get_faces(result)
+                global faces = face_detection.get_faces(result)
                 annotator.clear()
                 for face in faces:
                     annotator.bounding_box(transform(face.bounding_box), fill=0)
@@ -94,7 +94,7 @@ def main():
                 print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
                     (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
         
-        if len(faces)>0 :
+             if len(faces)>0 :
                 j=+1
                 time.sleep(1)
                 if j==5:
