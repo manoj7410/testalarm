@@ -96,8 +96,10 @@ def main():
         
             if len(faces)>0 :
                 j=+1
+                print('Printing J: '%j)
                 time.sleep(1)
                 if j==5:
+                    print('Playing Sound Now !!')
                     player = aiy.toneplayer.TonePlayer(22)
                     player.play(*tetris_theme)
                     j=0
